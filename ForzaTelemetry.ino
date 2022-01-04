@@ -137,7 +137,7 @@ void loop()
             const unsigned char new_gear = Serial.read();
             if (new_gear != gear)
             {
-                gear = Serial.read();
+                gear = new_gear;
                 update_gear();
             }
         }
