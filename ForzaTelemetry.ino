@@ -13,22 +13,22 @@
 #define SEG_PIN_B 9
 #define SEG_PIN_BR 8
 
-char SEG_PINS[] = {SEG_PIN_TL, SEG_PIN_T, SEG_PIN_TR, SEG_PIN_M, SEG_PIN_BL, SEG_PIN_B, SEG_PIN_BR};
+const char SEG_PINS[] = {SEG_PIN_TL, SEG_PIN_T, SEG_PIN_TR, SEG_PIN_M, SEG_PIN_BL, SEG_PIN_B, SEG_PIN_BR};
 
-char SEG_CHAR_R[] = {0, 0, 0, 1, 1, 0, 0};
-char SEG_CHAR_N[] = {0, 0, 0, 1, 1, 0, 1};
-char SEG_CHAR_0[] = {1, 1, 1, 0, 1, 1, 1};
-char SEG_CHAR_1[] = {0, 0, 1, 0, 0, 0, 1};
-char SEG_CHAR_2[] = {0, 1, 1, 1, 1, 1, 0};
-char SEG_CHAR_3[] = {0, 1, 1, 1, 0, 1, 1};
-char SEG_CHAR_4[] = {1, 0, 1, 1, 0, 0, 1};
-char SEG_CHAR_5[] = {1, 1, 0, 1, 0, 1, 1};
-char SEG_CHAR_6[] = {1, 1, 0, 1, 1, 1, 1};
-char SEG_CHAR_7[] = {0, 1, 1, 0, 0, 0, 1};
-char SEG_CHAR_8[] = {1, 1, 1, 1, 1, 1, 1};
-char SEG_CHAR_9[] = {1, 1, 1, 1, 0, 1, 1};
+const char SEG_CHAR_R[] = {0, 0, 0, 1, 1, 0, 0};
+const char SEG_CHAR_N[] = {0, 0, 0, 1, 1, 0, 1};
+const char SEG_CHAR_0[] = {1, 1, 1, 0, 1, 1, 1};
+const char SEG_CHAR_1[] = {0, 0, 1, 0, 0, 0, 1};
+const char SEG_CHAR_2[] = {0, 1, 1, 1, 1, 1, 0};
+const char SEG_CHAR_3[] = {0, 1, 1, 1, 0, 1, 1};
+const char SEG_CHAR_4[] = {1, 0, 1, 1, 0, 0, 1};
+const char SEG_CHAR_5[] = {1, 1, 0, 1, 0, 1, 1};
+const char SEG_CHAR_6[] = {1, 1, 0, 1, 1, 1, 1};
+const char SEG_CHAR_7[] = {0, 1, 1, 0, 0, 0, 1};
+const char SEG_CHAR_8[] = {1, 1, 1, 1, 1, 1, 1};
+const char SEG_CHAR_9[] = {1, 1, 1, 1, 0, 1, 1};
 
-char *SEG_NUMS[] = {SEG_CHAR_0, SEG_CHAR_1, SEG_CHAR_2, SEG_CHAR_3, SEG_CHAR_4, SEG_CHAR_5, SEG_CHAR_6, SEG_CHAR_7, SEG_CHAR_8, SEG_CHAR_9};
+const char *SEG_NUMS[] = {SEG_CHAR_0, SEG_CHAR_1, SEG_CHAR_2, SEG_CHAR_3, SEG_CHAR_4, SEG_CHAR_5, SEG_CHAR_6, SEG_CHAR_7, SEG_CHAR_8, SEG_CHAR_9};
 
 unsigned int engine_max_rpm = 0;
 unsigned int engine_current_rpm = 0;
