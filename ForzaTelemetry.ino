@@ -32,14 +32,14 @@ const char *SEG_NUMS[] = {SEG_CHAR_0, SEG_CHAR_1, SEG_CHAR_2, SEG_CHAR_3, SEG_CH
 
 unsigned int engine_max_rpm = 0;
 unsigned int engine_current_rpm = 0;
-char gear = 0;
+unsigned char gear = 255;
 
 inline char should_all_leds_flash()
 {
     return engine_current_rpm > engine_max_rpm;
 }
 
-inline char should_led_light_up(unsigned int led_pin)
+inline char should_led_light_up(const unsigned int led_pin)
 {
     return engine_current_rpm >= (engine_max_rpm - (TOTAL_LED_PINS - led_pin + 1) * (engine_max_rpm / 20));
 }
@@ -49,9 +49,32 @@ unsigned int flash_counter = 0;
 
 void update_gear()
 {
+    char *seg_char;
+
+    if (gear < 10)
+        seg_char = SEG_NUMS[gear];
+
+    if (gear == 10)
+        seg_char = SEG_NUMS[0];
+
+    if (gear == 0 && engine_current_rpm != 0)
+        seg_char = SEG_CHAR_R;
+
+    // Default value (no data)
+    if (gear == 255)
+        seg_char = SEG_CHAR_N;
+
+    // Player is not driving
+    if (gear == 0 && engine_current_rpm == 0)
+        seg_char = SEG_CHAR_N;
+
+    // Game reports neutral gear
+    if (gear == 11)
+        seg_char = SEG_CHAR_N;
+
     for (int i = 0; i < 7; i++)
     {
-        digitalWrite(SEG_PINS[i], SEG_NUMS[gear][i]);
+        digitalWrite(SEG_PINS[i], seg_char[i]);
     }
 }
 
