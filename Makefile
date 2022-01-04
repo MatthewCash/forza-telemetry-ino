@@ -1,4 +1,4 @@
-ARDUINO_CLI="arduino-cli"
+ARDUINO_CLI=arduino-cli
 BOARD=arduino:avr:uno
 SERIAL_PORT=COM3
 
