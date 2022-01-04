@@ -120,21 +120,21 @@ void loop()
         // Game data starts with two 0xff bytes
         if (Serial.read() == 0xff && Serial.read() == 0xff)
         {
-            unsigned int new_engine_max_rpm = Serial.read() << 8 + Serial.read();
+            const unsigned int new_engine_max_rpm = (Serial.read() << 8) + Serial.read();
             if (new_engine_max_rpm != engine_max_rpm)
             {
                 engine_max_rpm = new_engine_max_rpm;
                 update_rpms();
             }
 
-            unsigned int new_engine_current_rpm = Serial.read() << 8 + Serial.read();
+            const unsigned int new_engine_current_rpm = (Serial.read() << 8) + Serial.read();
             if (new_engine_current_rpm != engine_current_rpm)
             {
                 engine_current_rpm = new_engine_current_rpm;
                 update_rpms();
             }
 
-            unsigned char new_gear = Serial.read();
+            const unsigned char new_gear = Serial.read();
             if (new_gear != gear)
             {
                 gear = Serial.read();
