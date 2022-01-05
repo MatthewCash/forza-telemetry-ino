@@ -41,6 +41,12 @@ inline char should_all_leds_flash()
 
 inline char should_led_light_up(const unsigned int led_pin)
 {
+    if (gear == 0 && engine_current_rpm == 0)
+        return 0;
+
+    if (gear == 255)
+        return 0;
+
     return engine_current_rpm >= (engine_max_rpm - (TOTAL_LED_PINS - led_pin + 1) * (engine_max_rpm / 20));
 }
 
