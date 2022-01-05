@@ -50,9 +50,6 @@ inline char should_led_light_up(const unsigned int led_pin)
     return engine_current_rpm >= (engine_max_rpm - (TOTAL_LED_PINS - led_pin + 1) * (engine_max_rpm / 20));
 }
 
-unsigned int flash_counter = 0;
-#define FLASH_COUNTER_MAX 30000
-
 void update_gear()
 {
     char *seg_char;
@@ -94,6 +91,23 @@ void update_rpms()
         digitalWrite(LED_PIN_4, should_led_light_up(4));
         digitalWrite(LED_PIN_5, should_led_light_up(5));
     }
+}
+
+#define LED_FLASH_DELAY 150
+unsigned long led_flash_timer_time = 0;
+
+void led_flash_timer()
+{
+    if (should_all_leds_flash())
+    {
+        digitalWrite(LED_PIN_1, !digitalRead(LED_PIN_1));
+        digitalWrite(LED_PIN_2, !digitalRead(LED_PIN_2));
+        digitalWrite(LED_PIN_3, !digitalRead(LED_PIN_3));
+        digitalWrite(LED_PIN_4, !digitalRead(LED_PIN_4));
+        digitalWrite(LED_PIN_5, !digitalRead(LED_PIN_5));
+    }
+
+    led_flash_timer_time = millis() + LED_FLASH_DELAY;
 }
 
 void setup()
@@ -149,19 +163,6 @@ void loop()
         }
     }
 
-    if (should_all_leds_flash())
-    {
-        flash_counter++;
-
-        if (flash_counter > FLASH_COUNTER_MAX)
-        {
-            flash_counter = 0;
-
-            digitalWrite(LED_PIN_1, !digitalRead(LED_PIN_1));
-            digitalWrite(LED_PIN_2, !digitalRead(LED_PIN_2));
-            digitalWrite(LED_PIN_3, !digitalRead(LED_PIN_3));
-            digitalWrite(LED_PIN_4, !digitalRead(LED_PIN_4));
-            digitalWrite(LED_PIN_5, !digitalRead(LED_PIN_5));
-        }
-    }
+    if (led_flash_timer_time <= millis())
+        led_flash_timer();
 }
