@@ -39,7 +39,7 @@ inline char should_all_leds_flash()
     return engine_current_rpm > engine_max_rpm;
 }
 
-inline char should_led_light_up(const unsigned int led_pin)
+inline char should_led_light_up(const unsigned char led_pin)
 {
     if (gear == 0 && engine_current_rpm == 0)
         return 0;
@@ -52,14 +52,17 @@ inline char should_led_light_up(const unsigned int led_pin)
 
 void update_gear()
 {
-    char *seg_char;
+    char *seg_char = NULL;
 
+    // Gear 1-9
     if (gear < 10)
         seg_char = SEG_NUMS[gear];
 
+    // Gear 10 displays as 0
     if (gear == 10)
         seg_char = SEG_NUMS[0];
 
+    // Game reports reverse gear
     if (gear == 0 && engine_current_rpm != 0)
         seg_char = SEG_CHAR_R;
 
@@ -74,6 +77,10 @@ void update_gear()
     // Game reports neutral gear
     if (gear == 11)
         seg_char = SEG_CHAR_N;
+
+    // Not enough into to determine gear
+    if (seg_char == NULL)
+        return;
 
     for (int i = 0; i < 7; i++)
     {
