@@ -3,7 +3,7 @@ BOARD=arduino:avr:uno
 SERIAL_PORT=COM3
 
 .PHONY: all
-all: compile
+all: upload
 
 .PHONY: compile
 compile:
